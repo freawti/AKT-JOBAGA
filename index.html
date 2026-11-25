@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="История и эволюция триатлона на длинной дистанции. Учебный проект.">
+  <title>IRONMAN — 1987–2026 / История дистанции</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"}}
+  </script>
+</head>
+<body>
+  <!-- Preloader: 0 to 100% counter + upward curtain wipe -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-top">
+        <span>ENDURANCE / 226</span>
+        <span>1987 — 2026</span>
+      </div>
+      <div class="preloader-center">
+        <div class="preloader-count" id="preloader-count">000</div>
+        <div class="preloader-bar"><i id="preloader-bar-fill"></i></div>
+      </div>
+      <div class="preloader-bottom">
+        <span>SWIM · BIKE · RUN</span>
+        <span>LOADING EXPERIENCE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtle film-grain overlay & top scroll hairline -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"><i id="scroll-progress-fill"></i></div>
+
+  <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержимому</a>
+  <header class="site-header" id="top">
+    <a class="wordmark" href="#top" aria-label="На главную">ENDURANCE<span> / 226</span></a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#story" data-i18n="navStory">История</a>
+      <a href="#disciplines" data-i18n="navDistance">Дистанция</a>
+      <a href="#kazakhstan" data-i18n="navKz">Казахстан</a>
+    </nav>
+    <div class="header-tools">
+      <div class="language-switch" aria-label="Язык сайта">
+        <button class="lang-button is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <span>/</span>
+        <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><b data-i18n="menu">МЕНЮ</b>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#story" data-i18n="navStory">История</a>
+    <a href="#disciplines" data-i18n="navDistance">Дистанция</a>
+    <a href="#hall-of-fame" data-i18n="navAthletes">Атлеты</a>
+    <a href="#kazakhstan" data-i18n="navKz">Казахстан</a>
+  </nav>
+
+  <main id="main">
+    <!-- Stage 3: procedural Three.js water scene will mount in this canvas. -->
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroEyebrow">ИСТОРИЯ ДЛИННОЙ ДИСТАНЦИИ · 1987—2026</p>
+        <h1 id="hero-title">IRON<br><span>MAN</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-years">19<span>87</span> — 20<span>26</span></p>
+          <p class="hero-intro" data-i18n="heroIntro">Три дисциплины.<br>Одна дистанция за пределом привычного.</p>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-orb"></div><div class="hero-orbit"></div><div class="hero-canvas-note">3.8 / 180 / 42.195</div></div>
+      <a class="scroll-cue" href="#story"><span class="scroll-line"></span><span data-i18n="scroll">ЛИСТАЙТЕ</span></a>
+      <div class="hero-index">01 <i>—</i> 08</div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">SWIM <i>·</i> BIKE <i>·</i> RUN <i>·</i> SWIM <i>·</i> BIKE <i>·</i> RUN <i>·</i> SWIM <i>·</i> BIKE <i>·</i> RUN <i>·</i></div></div>
+
+    <!-- Исторические факты сверены с медиа-гайдом IRONMAN 2017, официальными материалами IRONMAN и акимата Астаны; источники указаны в assets/CREDITS.md. -->
+    <!-- Pinned stacked editorial story: each card slides smoothly over the previous one with framed photography next to text. -->
+    <section class="scroll-story" id="story-slides" aria-label="История Ironman в фотографиях">
+      <div class="story-frame">
+        <div class="story-frame-top"><span>01 / ВРЕМЯ ДИСТАНЦИИ</span><span>SCROLL TO MOVE THROUGH THE STORY</span></div>
+        <article class="story-slide is-active">
+          <div class="story-copy"><p class="eyebrow">ПРОЛОГ · ГАВАЙИ</p><p class="story-year">1978</p><h2>СПОР<br>СТАЛ <span>СТАРТОМ.</span></h2><p class="story-description">15 участников вышли на первый старт. Победителем стал Гордон Халлер — с этого события началась история длинной дистанции.</p><small class="story-credit">Фото: karim.agaoua / Wikimedia Commons · CC BY-SA 2.0</small></div>
+          <figure class="story-media"><img src="assets/img/gordon-haller-1978.webp" alt="Гордон Халлер выходит из воды на первом соревновании Ironman в 1978 году" loading="eager" fetchpriority="high"></figure>
+          <span class="story-side-note">THE FIRST FINISH LINE</span>
+        </article>
+        <article class="story-slide">
+          <div class="story-copy"><p class="eyebrow">01 · SWIM</p><p class="story-year">3,8 <small>КМ</small></p><h2>НАЧИНАЕТСЯ<br><span>С ВОДЫ.</span></h2><p class="story-description">Заплыв открывает полную дистанцию. После него участник проходит транзитную зону и продолжает гонку на велосипеде — время не останавливается.</p><small class="story-credit">Фото: PH2 Jason R. Williams / U.S. Navy · общественное достояние</small></div>
+          <figure class="story-media"><img src="assets/img/triathlon-swim.jpg" alt="Триатлеты выбегают из воды на соревновании" loading="lazy"></figure>
+          <span class="story-side-note">PACIFIC · OPEN WATER</span>
+        </article>
+        <article class="story-slide">
+          <div class="story-copy"><p class="eyebrow">02 · BIKE</p><p class="story-year">180 <small>КМ</small></p><h2>ДЕРЖИ<br><span>ТЕМП.</span></h2><p class="story-description">Самый длинный по километражу этап полной дистанции. Здесь важны устойчивый темп, питание и точное распределение сил до марафона.</p><small class="story-credit">Фото: Matthew Seely / Wikimedia Commons · CC BY-SA 4.0</small></div>
+          <figure class="story-media"><img src="assets/img/triathlon-bike.jpg" alt="Группа велосипедистов на этапе триатлона" loading="lazy"></figure>
+          <span class="story-side-note">PAN AM GAMES · TORONTO</span>
+        </article>
+        <article class="story-slide">
+          <div class="story-copy"><p class="eyebrow">03 · RUN</p><p class="story-year">42,195 <small>КМ</small></p><h2>ПОСЛЕДНИЙ<br><span>ЭТАП.</span></h2><p class="story-description">Марафон начинается после плавания и 180 километров на велосипеде. Именно здесь часы гонки превращаются в проверку выдержки.</p><small class="story-credit">Фото: Graham Horn / Geograph · CC BY-SA 2.0</small></div>
+          <figure class="story-media"><img src="assets/img/triathlon-run.jpg" alt="Участники выходят на беговой этап триатлона" loading="lazy"></figure>
+          <span class="story-side-note">THE MARATHON LEG</span>
+        </article>
+        <article class="story-slide">
+          <div class="story-copy"><p class="eyebrow">ASTANA · KAZAKHSTAN</p><p class="story-year">2018</p><h2>НОВАЯ<br><span>ТОЧКА НА КАРТЕ.</span></h2><p class="story-description">17 июня прошёл первый IRONMAN 70.3 Astana — первый старт серии в СНГ. Более 1 300 атлетов из 47 стран проплыли 1,9 км по Ишиму, проехали 90 км и пробежали 21,1 км.</p><small class="story-credit">Фото: Nikolamikovic82 / Wikimedia Commons · CC0 1.0</small></div>
+          <figure class="story-media"><img src="assets/img/astana-view-optimized.jpg" alt="Панорама Астаны, столицы Казахстана" loading="lazy"></figure>
+          <span class="story-side-note">ASTANA · CAPITAL CITY</span>
+        </article>
+        <article class="story-slide">
+          <div class="story-copy"><p class="eyebrow">TRIATHLON PARK · ASTANA</p><p class="story-year">3 <small>ЭТАПА</small></p><h2>ГОРОД<br><span>ВХОДИТ В ГОНКУ.</span></h2><p class="story-description">Ишим, велотрасса и беговые улицы соединяют три дисциплины в центре Астаны. Это реальный вид Triathlon Park Astana — места старта и финиша.</p><small class="story-credit">Фото: Gfrc360 / Wikimedia Commons · CC BY-SA 4.0</small></div>
+          <figure class="story-media"><img src="assets/img/astana-triathlon-park.jpg" alt="Аллея в Triathlon Park Astana" loading="lazy"></figure>
+          <span class="story-side-note">ASTANA · 2019</span>
+        </article>
+        <div class="story-frame-bottom"><span class="story-current">01</span><div class="story-progress"><i></i></div><span>06</span><span class="story-scroll-hint">ЛИСТАЙТЕ ДАЛЬШЕ <b>↓</b></span></div>
+      </div>
+    </section>
+
+    <section class="intro-section section-pad" id="story">
+      <div class="section-label"><span>01 / ПРОЛОГ</span><span>HAWAI‘I · 1978</span></div>
+      <div class="intro-layout">
+        <h2 data-i18n="introTitle">ОДНА ИДЕЯ.<br><span>226 КИЛОМЕТРОВ.</span></h2>
+        <div class="intro-text"><p data-i18n="introBody">История длинного триатлона — это путь от спора на Гавайях до глобального испытания выносливости. Три вида спорта соединяются в один непрерывный маршрут.</p><a class="text-link" href="#timeline"><span data-i18n="explore">ИССЛЕДОВАТЬ ИСТОРИЮ</span><b>↘</b></a></div>
+      </div>
+      <div class="intro-rule"><span>SWIM</span><span>BIKE</span><span>RUN</span></div>
+    </section>
+
+    <section class="disciplines section-pad" id="disciplines">
+      <div class="section-label"><span>02 / ДИСТАНЦИЯ</span><span>ONE CONTINUOUS RACE</span></div>
+      <div class="discipline-heading"><h2 data-i18n="distanceTitle">ТРИ ЧАСТИ.<br><span>ОДИН ФИНИШ.</span></h2><p data-i18n="distanceText">Стандартная полная дистанция: три этапа подряд, без остановки часов.</p></div>
+      <div class="discipline-list">
+        <article class="discipline-row swim-row"><span class="discipline-number">01</span><span class="discipline-name" data-i18n="swim">Плавание</span><span class="discipline-distance">3,8 <small>КМ</small></span><span class="discipline-symbol">≈</span></article>
+        <article class="discipline-row bike-row"><span class="discipline-number">02</span><span class="discipline-name" data-i18n="bike">Велосипед</span><span class="discipline-distance">180 <small>КМ</small></span><span class="discipline-symbol">↗</span></article>
+        <article class="discipline-row run-row"><span class="discipline-number">03</span><span class="discipline-name" data-i18n="run">Бег</span><span class="discipline-distance">42,195 <small>КМ</small></span><span class="discipline-symbol">→</span></article>
+      </div>
+      <div class="bike-showcase" id="bike-showcase" aria-label="Интерактивная трёхмерная модель велосипеда">
+        <div class="bike-showcase-copy"><p class="eyebrow">DISCIPLINE 02 / 180 KM</p><h3 data-i18n="bikeHeadline">ПОЙМАЙ<br><span>РИТМ.</span></h3><p data-i18n="bikePrompt">Наведите курсор — колёса ускорятся.</p></div>
+        <div class="bike-canvas-wrap"><canvas id="bike-canvas" aria-label="Детализированная 3D-модель шоссейного велосипеда" role="img"></canvas><span class="bike-hover-hint" data-i18n="bikeHint">HOVER TO RIDE <i>↗</i></span></div>
+        <div class="bike-spec">AERO / 01 <span>SCROLL TO SHIFT</span></div>
+      </div>
+      <div class="total-distance"><span data-i18n="total">ВСЕГО</span><strong data-count="226">226</strong><em>КМ</em></div>
+    </section>
+
+    <!-- Interactive 3D Athlete Outfit Swap: hover or tap to shift between Run Gear & Swim Wetsuit -->
+    <section class="gear-shift-section section-pad" id="gear-shift" aria-labelledby="gear-shift-title">
+      <div class="section-label"><span>02.5 / ТРАНСФОРМАЦИЯ</span><span>SWIM ↔ RUN</span></div>
+      <div class="gear-shift-layout">
+        <div class="gear-shift-copy">
+          <p class="eyebrow" data-i18n="gearEyebrow">ЭКИПИРОВКА · ОДНО ТЕЛО</p>
+          <h2 id="gear-shift-title" data-i18n="gearTitle">ДВЕ СТИХИИ.<br><span>ОДИН АТЛЕТ.</span></h2>
+          <p class="gear-shift-desc" data-i18n="gearDesc">От открытой воды в гидрокостюме до финального марафона — наведите курсор на атлета, чтобы увидеть смену экипировки в реальном времени.</p>
+          <div class="gear-modes" aria-live="polite">
+            <div class="gear-mode is-run is-active" data-mode="run">
+              <span class="gear-mode-code">01 // RUN</span>
+              <strong data-i18n="gearRunLabel">БЕГОВАЯ ФОРМА · 42,195 КМ</strong>
+            </div>
+            <div class="gear-mode is-swim" data-mode="swim">
+              <span class="gear-mode-code">02 // SWIM</span>
+              <strong data-i18n="gearSwimLabel">ГИДРОКОСТЮМ · 3,8 КМ</strong>
+            </div>
+          </div>
+        </div>
+        <div class="athlete-swap-stage" id="athlete-swap-stage" tabindex="0" role="button" aria-pressed="false" aria-label="Интерактивный 3D-атлет: наведите курсор или нажмите для смены экипировки с беговой на плавательную">
+          <div class="swap-aura" aria-hidden="true"></div>
+          <div class="swap-frame">
+            <img class="swap-img swap-img-run" src="assets/img/athlete-run-3d.jpg" alt="3D-атлет в беговой экипировке" loading="lazy">
+            <img class="swap-img swap-img-swim" src="assets/img/athlete-swim-3d.jpg" alt="3D-атлет в неопреновом гидрокостюме для плавания" loading="lazy">
+            <div class="swap-hud">
+              <span class="swap-badge" data-i18n="gearHint">НАВЕДИТЕ КУРСОР · SWIM / RUN</span>
+              <span class="swap-telemetry">3.8 KM <i>↔</i> 42.195 KM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-section section-pad" id="timeline">
+      <div class="section-label"><span>03 / ХРОНОЛОГИЯ</span><span>1978 — 2026</span></div>
+      <div class="timeline-heading"><h2 data-i18n="timelineTitle">ВРЕМЯ<br><span>ДИСТАНЦИИ</span></h2><p data-i18n="timelineText">От гавайского пролога к соревнованиям по всему миру.</p></div>
+      <div class="timeline-track-wrap">
+        <div class="timeline-track" aria-label="Исторические вехи" aria-live="polite">
+          <article class="timeline-card is-active"><div class="timeline-image"><img src="assets/img/gordon-haller-1978.webp" alt="Гордон Халлер после заплыва в 1978 году" loading="lazy"></div><p class="timeline-year">1978</p><h3>ГАВАЙИ</h3><p>На первый старт вышли 15 спортсменов. Победитель — Гордон Халлер.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/kona-1981-lava.jpg" alt="Вулканическая дорога на побережье Кона, Гавайи" loading="lazy"></div><p class="timeline-year">1981</p><h3>ПЕРЕЕЗД НА КОНА</h3><p>Чемпионат переезжает на Большой остров Гавайи — к вулканическим дорогам и океану.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/kona-1982-finish.jpg" alt="Финишная прямая на чемпионате Ironman в Коне" loading="lazy"></div><p class="timeline-year">1982</p><h3>ФИНИШ ДЖУЛИ МОСС</h3><p>Измождённая Джули Мосс доползает до финиша; в последние метры её обходит Кэтлин Маккартни. Кадр увидели зрители трансляции ABC.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/kona-1987-start.jpg" alt="Участник чемпионата Ironman 1987 года перед стартом" loading="lazy"></div><p class="timeline-year">1987</p><h3>НОВЫЕ МАСШТАБЫ</h3><p>Стартовали 1 381 участник, 1 283 уложились в лимит. Дэйв Скотт взял шестой титул, Эрин Бейкер установила женский рекорд трассы.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/ironman-703.jpg" alt="Соревнования серии IRONMAN 70.3" loading="lazy"></div><p class="timeline-year">2006</p><h3>IRONMAN 70.3</h3><p>Запускается бренд IRONMAN 70.3; в том же году проходит первый чемпионат мира в Клеруотере.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/astana-triathlon-park.jpg" alt="Аллея в Triathlon Park Astana" loading="lazy"></div><p class="timeline-year">2018</p><h3>IRONMAN В АСТАНЕ</h3><p>Более 1 300 участников из 47 стран; победители — Peter Wolkowicz и Deirdre Casey.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/astana-view-optimized.jpg" alt="Панорама Астаны, Казахстан" loading="lazy"></div><p class="timeline-year">2023</p><h3>ПОЛНАЯ ДИСТАНЦИЯ</h3><p>1 000+ атлетов из 60 стран; 30 слотов на чемпионат мира 70.3 в Лахти.</p></article>
+          <article class="timeline-card"><div class="timeline-image"><img src="assets/img/kona-2026-bay.jpg" alt="Массовый старт заплыва в заливе Каилуа-Кона, Гавайи" loading="lazy"></div><p class="timeline-year">2026</p><h3>НОВАЯ ГЛАВА</h3><p>Мужской и женский чемпионаты мира вновь проходят вместе в Коне.</p></article>
+        </div>
+      </div>
+      <div class="timeline-controls">
+        <button class="timeline-arrow timeline-prev" type="button" aria-label="Предыдущая веха">←</button>
+        <nav class="timeline-year-nav" aria-label="Выбрать историческую веху">
+          <button class="is-active" type="button" data-timeline-index="0" aria-pressed="true">1978</button>
+          <button type="button" data-timeline-index="1" aria-pressed="false">1981</button>
+          <button type="button" data-timeline-index="2" aria-pressed="false">1982</button>
+          <button type="button" data-timeline-index="3" aria-pressed="false">1987</button>
+          <button type="button" data-timeline-index="4" aria-pressed="false">2006</button>
+          <button type="button" data-timeline-index="5" aria-pressed="false">2018</button>
+          <button type="button" data-timeline-index="6" aria-pressed="false">2023</button>
+          <button type="button" data-timeline-index="7" aria-pressed="false">2026</button>
+        </nav>
+        <button class="timeline-arrow timeline-next" type="button" aria-label="Следующая веха">→</button>
+        <span class="timeline-counter"><b>01</b> / 08</span>
+      </div>
+      <p class="fact-note" data-i18n="timelineNote">Источники всех фотографий и проверенных исторических фактов собраны в assets/CREDITS.md.</p>
+    </section>
+
+    <section class="hall-section section-pad" id="hall-of-fame">
+      <div class="section-label"><span>04 / ЛЕГЕНДЫ</span><span>HALL OF FAME</span></div>
+      <div class="hall-heading"><h2 data-i18n="hallTitle">ЛИЦА<br><span>ВЫНОСЛИВОСТИ</span></h2><p data-i18n="hallText">Первый победитель, шестикратный чемпион и рекордсменка по числу титулов.</p></div>
+      <div class="athlete-grid">
+        <article class="athlete-card"><div class="athlete-placeholder"><img src="assets/img/gordon-haller-1978.webp" alt="Гордон Халлер на первом Ironman в 1978 году" loading="lazy"></div><p>GORDON HALLER</p><small>1978 · ПЕРВЫЙ ПОБЕДИТЕЛЬ · 11:46:58</small></article>
+        <article class="athlete-card"><div class="athlete-placeholder"><img src="assets/img/dave-scott.jpg" alt="Дэйв Скотт, шестикратный чемпион мира Ironman" loading="lazy"></div><p>DAVE SCOTT</p><small>6-КРАТНЫЙ ЧЕМПИОН МИРА · ПОБЕДА 1987</small></article>
+        <article class="athlete-card"><div class="athlete-placeholder"><img src="assets/img/paula-newby-fraser.jpg" alt="Паула Ньюби-Фрейзер, восьмикратная чемпионка мира Ironman" loading="lazy"></div><p>PAULA NEWBY-FRASER</p><small>8-КРАТНАЯ ЧЕМПИОНКА МИРА</small></article>
+      </div>
+    </section>
+
+    <section class="half-section section-pad" id="half-distance">
+      <div class="section-label"><span>05 / 70.3</span><span>HALF DISTANCE</span></div>
+      <div class="half-heading"><h2>70.3<br><span>МИЛИ.</span></h2><p data-i18n="halfText">Половина полной дистанции. Три этапа, один финиш.</p></div>
+      <div class="half-bars"><div class="half-bar"><span>ПЛАВАНИЕ</span><div><i style="--progress:20%"></i></div><b>1,9 КМ</b></div><div class="half-bar"><span>ВЕЛОСИПЕД</span><div><i style="--progress:70%"></i></div><b>90 КМ</b></div><div class="half-bar"><span>БЕГ</span><div><i style="--progress:45%"></i></div><b>21,1 КМ</b></div></div>
+    </section>
+
+    <section class="kazakhstan-section section-pad" id="kazakhstan">
+      <div class="kz-sky-glow" aria-hidden="true"></div>
+      <div class="section-label"><span>06 / ЦЕНТРАЛЬНАЯ АЗИЯ</span><span>ASTANA · KAZAKHSTAN</span></div>
+      <div class="kz-heading"><p class="eyebrow">★ IRONMAN В КАЗАХСТАНЕ</p><h2>АСТАНА<br><span>НА ДИСТАНЦИИ.</span></h2><p>Три этапа вдоль Ишима и по улицам столицы.</p><figure class="kz-photo"><img src="assets/img/astana-triathlon-park.jpg" alt="Аллея в Triathlon Park Astana" loading="lazy"><figcaption>Triathlon Park Astana · Фото: Gfrc360 / Wikimedia Commons · CC BY-SA 4.0</figcaption></figure></div>
+      <div class="kz-content">
+        <div class="route-card">
+          <svg class="route-map" viewBox="0 0 700 260" role="img" aria-label="Схема маршрута: плавание, велосипед, бег">
+            <g class="route-grid" aria-hidden="true">
+              <line x1="20" y1="65" x2="680" y2="65"/>
+              <line x1="20" y1="130" x2="680" y2="130"/>
+              <line x1="20" y1="195" x2="680" y2="195"/>
+              <line x1="45" y1="30" x2="45" y2="230"/>
+              <line x1="390" y1="30" x2="390" y2="230"/>
+              <line x1="650" y1="30" x2="650" y2="230"/>
+            </g>
+            <path class="route-path-bg" d="M45 175 C120 175 120 80 210 80 S305 210 390 170 S500 55 650 90"/>
+            <path class="route-path" id="kz-route-path" d="M45 175 C120 175 120 80 210 80 S305 210 390 170 S500 55 650 90"/>
+            <circle class="route-pulse-dot" id="kz-route-tracer" cx="45" cy="175" r="5"/>
+            <g class="route-node" data-node="0"><circle class="route-node-ring" cx="45" cy="175" r="18"/><circle class="route-node-core" cx="45" cy="175" r="9"/></g>
+            <g class="route-node" data-node="1"><circle class="route-node-ring" cx="390" cy="170" r="18"/><circle class="route-node-core" cx="390" cy="170" r="9"/></g>
+            <g class="route-node" data-node="2"><circle class="route-node-ring" cx="650" cy="90" r="18"/><circle class="route-node-core" cx="650" cy="90" r="9"/></g>
+          </svg>
+          <div class="route-labels"><span>01 · ВОДА</span><span>02 · ВЕЛО</span><span>03 · БЕГ</span></div>
+          <p class="route-start">СТАРТ / ФИНИШ · TRIATHLON PARK ASTANA</p>
+        </div>
+        <div class="kz-facts">
+          <article><strong data-count="2018">2018</strong><span>ПЕРВЫЙ СТАРТ</span></article>
+          <article><strong data-count="1300" data-space="true" data-suffix="+">1 300+</strong><span>УЧАСТНИКОВ*</span></article>
+          <article><strong data-count="47">47</strong><span>СТРАН*</span></article>
+        </div>
+      </div>
+      <div class="kz-story"><article><span>2017</span><p>Карим Масимов, президент Казахстанской федерации триатлона, объявляет о первом в СНГ старте IRONMAN 70.3 в Астане.</p></article><article><span>17.06.2018</span><p>Первый IRONMAN 70.3 Astana: заплыв в Ишиме — 1,9 км, велоэтап — 90 км, бег — 21,1 км. Победители: Peter Wolkowicz и Deirdre Casey.</p></article><article><span>02.07.2023</span><p>Проводятся BI Group IRONMAN Kazakhstan и Freedom IRONMAN 70.3 Astana. Более 1 000 участников из 60 стран; 30 лучших в 70.3 получают слоты на чемпионат мира в Лахти.</p></article></div>
+      <p class="fact-note">Цифры и имена сверены по публикациям The Astana Times, Qazinform и материалам организаторов. Ссылки — в assets/CREDITS.md.</p>
+    </section>
+
+    <section class="final-section section-pad">
+      <p class="eyebrow">07 / ФИНИШНАЯ ЧЕРТА</p>
+      <h2 class="final-headline" id="final-headline">ANYTHING<br><span>IS POSSIBLE.</span></h2>
+      <a class="back-top" href="#top"><span data-i18n="backTop">НАВЕРХ</span><b>↑</b></a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="wordmark" href="#top">ENDURANCE<span> / 226</span></a><p>Учебный проект. Не связан с IRONMAN® и его правообладателями.</p><p>Фото: автор / источник — см. <a href="assets/CREDITS.md">assets/CREDITS.md</a>.</p><span>© 2026 · MADE TO GO THE DISTANCE</span></footer>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+  <script type="module" src="hero-scene.js"></script>
+  <script type="module" src="bike-scene.js"></script>
+</body>
+</html>
